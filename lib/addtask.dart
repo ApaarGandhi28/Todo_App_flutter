@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import './models/info.dart';
 
 class AddTask extends StatefulWidget {
   final Function ff;
-  AddTask(this.ff);
+  final Function notify;
+  AddTask(this.ff,this.notify);
 
   @override
   _AddTaskState createState() => _AddTaskState();
@@ -33,10 +33,21 @@ class _AddTaskState extends State<AddTask> {
       }
       setState(() {
         _selectedDate = pickedDate;
+        print(_selectedDate);
         dateVal = true;
       });
     });
   }
+
+   TimeOfDay fromString1(String str){
+   str = str.substring(0,str.length-1);
+   int i=0;
+   while(str.codeUnitAt(i) < 48 || str.codeUnitAt(i) > 57){
+    i++;
+   }
+   str = str.substring(i,str.length);
+   return TimeOfDay(hour:int.parse(str.split(":")[0]),minute: int.parse(str.split(":")[1]));
+   }
 
   void timePicker(BuildContext context) {
     showTimePicker(
@@ -48,6 +59,9 @@ class _AddTaskState extends State<AddTask> {
       }
       setState(() {
         _selectedTime = pickedTime;
+        // print(_selectedTime.toString());
+        // print(_selectedTime);
+        print(fromString1(_selectedTime.toString()) );
         timeVal = true;
       });
     });
@@ -66,6 +80,15 @@ class _AddTaskState extends State<AddTask> {
               _selectedDate,
               _selectedTime,
     );
+    widget.notify(0,'New Task Added Successfully' , titleController.text ,DateTime.now());
+    DateTime finalDate = new DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, _selectedTime.hour, _selectedTime.minute);
+    if(DateTime.now().isBefore(finalDate.subtract(Duration(hours: 24))))
+    widget.notify(1,'Task Pending in Next 24 Hours' , titleController.text , finalDate.subtract(Duration(hours: 24)) );
+    if(DateTime.now().isBefore(finalDate.subtract(Duration(hours: 1))))
+    widget.notify(2,'Task Pending in Next 60 Minutes' , titleController.text , finalDate.subtract(Duration(hours: 1)) );
+    if(DateTime.now().isBefore(finalDate.subtract(Duration(minutes: 10))))
+    widget.notify(3,'Task Pending in Next 10 Minutes' , titleController.text , finalDate.subtract(Duration(minutes: 10)) );
+    // print(finalDate.subtract(Duration(minutes: 10)) );
     Navigator.of(context).pop();
   }
   

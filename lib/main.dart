@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import './todopage.dart';
+import './weekly_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+        primarySwatch: Colors.green,   
         accentColor: Colors.red[600],
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText1: TextStyle( 
@@ -28,13 +28,18 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
+      debugShowCheckedModeBanner: false, 
       home: TodoPage(),
+      routes: {
+        'weekly_screen' : (ctx) => WeeklyScreen(),
+      },
     );
   }
 }
-// Swipe Left To Mark a Task Completed
-//Pop Up Screen on Delete press
-//Sort the List on each event.
-//Notifications and Alarms
-// Shared Prefrences
-// Image if List is Empty
+// Add Splash Screen , Launch Icons and Notifications Icons --> Done
+// Swipe Left To Mark a Task Completed --> Dissmissible Added
+// Notifications and Alarms --> Local Notifications Added.
+// Sort the List on each event. --> List Sorted on basis of DateTime.
+// Shared Prefrences --> Finally Added
+// Image if List is Empty --> Added
+// Weekly Screen --> Added
