@@ -78,9 +78,9 @@ class _EditTaskState extends State<EditTask> {
         widget.user.date,
         widget.user.time,
       );
+       
     });
-      
-    Navigator.of(context).pop();
+   Navigator.of(context).pop();
   }
 
   @override

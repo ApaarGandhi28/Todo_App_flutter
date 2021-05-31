@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './todopage.dart';
 import './weekly_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,   
+        primarySwatch: Colors.green,
         accentColor: Colors.red[600],
         textTheme: ThemeData.light().textTheme.copyWith(
-              bodyText1: TextStyle( 
-               fontFamily : 'Voltaire',
-               fontSize: 20,
-               fontWeight: FontWeight.bold,
+              bodyText1: TextStyle(
+                fontFamily: 'Voltaire',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
               headline6: TextStyle(
                 fontFamily: 'Voltaire',
@@ -28,10 +33,10 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       home: TodoPage(),
       routes: {
-        'weekly_screen' : (ctx) => WeeklyScreen(),
+        'weekly_screen': (ctx) => WeeklyScreen(),
       },
     );
   }

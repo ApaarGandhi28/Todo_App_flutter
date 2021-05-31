@@ -61,7 +61,7 @@ class _ListElementState extends State<ListElement> {
               ),
               label: Text('Delete'),
               onPressed: () => {
-                widget.dd(widget.user.id)
+                widget.dd(widget.user.id).then(Navigator.of(context).pop())
                },
             ),
           ),

@@ -94,102 +94,104 @@ class _AddTaskState extends State<AddTask> {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          TextField(
-            controller: titleController,
-            style: TextStyle(
-              fontFamily: 'Voltaire',
-              color: Colors.black,
-              fontSize: 20,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Title',
-              labelStyle: TextStyle(
-                fontFamily: 'Voltaire',
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              FlatButton.icon(
-                onPressed: () {
-                  datePicker(context);
-                },
-                icon: Icon(Icons.date_range),
-                label: Text('Enter Date'),
-              ),
-              FlatButton.icon(
-                onPressed: () {
-                  timePicker(context);
-                },
-                icon: Icon(Icons.access_time),
-                label: Text('Enter Time'),
-              ),
-            ],
-          ),
-          if(dateVal == true || timeVal == true || titleController.text.isNotEmpty)
-          SizedBox(
-            height: 30,
-          ),
-          if(dateVal == true || timeVal == true || titleController.text.isNotEmpty)
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-                width: 2,
-              ),
-            ),
-            child: Card(
-              margin: EdgeInsets.all(5),
-              elevation: 5,
-              child: Column(
-                children: [
-                  Text(
-                    '${titleController.text}',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'CoveredByYourGrace',
-                      color: Colors.black,
-                    ),
-                  ),
-                  if (dateVal == true)
-                    Text(
-                      'Date :--  ${DateFormat.yMMMMd().format(_selectedDate)}',
-                      style: TextStyle(
-                        fontFamily: 'Voltaire',
-                        fontSize: 20,
-                      ),
-                    ),
-                  if (timeVal == true)
-                    Text(
-                      'Time :--  ${_selectedTime.format(context)}',
-                      style: TextStyle(
-                        fontFamily: 'Voltaire',
-                        fontSize: 20,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          FlatButton(
-            color: Colors.cyan[100],
-            child: Text(
-              'Add Task',
+    return SingleChildScrollView(
+          child: Container(
+        child: Column(
+          children: [
+            TextField(
+              controller: titleController,
               style: TextStyle(
                 fontFamily: 'Voltaire',
-                fontSize: 25,
+                color: Colors.black,
+                fontSize: 20,
+              ),
+              decoration: InputDecoration(
+                labelText: 'Title',
+                labelStyle: TextStyle(
+                  fontFamily: 'Voltaire',
+                ),
               ),
             ),
-            onPressed: _submitData,
-          ),
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FlatButton.icon(
+                  onPressed: () {
+                    datePicker(context);
+                  },
+                  icon: Icon(Icons.date_range),
+                  label: Text('Enter Date'),
+                ),
+                FlatButton.icon(
+                  onPressed: () {
+                    timePicker(context);
+                  },
+                  icon: Icon(Icons.access_time),
+                  label: Text('Enter Time'),
+                ),
+              ],
+            ),
+            if(dateVal == true || timeVal == true || titleController.text.isNotEmpty)
+            SizedBox(
+              height: 30,
+            ),
+            if(dateVal == true || timeVal == true || titleController.text.isNotEmpty)
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                  width: 2,
+                ),
+              ),
+              child: Card(
+                margin: EdgeInsets.all(5),
+                elevation: 5,
+                child: Column(
+                  children: [
+                    Text(
+                      '${titleController.text}',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontFamily: 'CoveredByYourGrace',
+                        color: Colors.black,
+                      ),
+                    ),
+                    if (dateVal == true)
+                      Text(
+                        'Date :--  ${DateFormat.yMMMMd().format(_selectedDate)}',
+                        style: TextStyle(
+                          fontFamily: 'Voltaire',
+                          fontSize: 20,
+                        ),
+                      ),
+                    if (timeVal == true)
+                      Text(
+                        'Time :--  ${_selectedTime.format(context)}',
+                        style: TextStyle(
+                          fontFamily: 'Voltaire',
+                          fontSize: 20,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            FlatButton(
+              color: Colors.cyan[100],
+              child: Text(
+                'Add Task',
+                style: TextStyle(
+                  fontFamily: 'Voltaire',
+                  fontSize: 25,
+                ),
+              ),
+              onPressed: _submitData,
+            ),
+          ],
+        ),
       ),
     );
   }

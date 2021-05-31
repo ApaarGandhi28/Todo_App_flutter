@@ -1,3 +1,4 @@
+import 'package:TODO/weekly_screen.dart';
 import 'package:flutter/material.dart';
 import './models/info.dart';
 import './listElement.dart';
@@ -20,9 +21,7 @@ class _TodoPageState extends State<TodoPage> {
 
   Future onSelectNotification(String payload) {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return NewScreen(
-        payload: payload,
-      );
+      return WeeklyScreen();
     }));
   }
 
